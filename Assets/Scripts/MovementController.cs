@@ -18,7 +18,9 @@ public class MovementController : MonoBehaviour
     [SerializeField] float crouchSpeed = 2.5f;
     [SerializeField] float jumpForce = 100;
     public float stamina = 5f;
-    [SerializeField] float staminaMultiplier = 1f;
+    [SerializeField] private float staminaMultiplier = 1f;
+
+
 
     public Transform orientation;
 
@@ -29,7 +31,13 @@ public class MovementController : MonoBehaviour
 
     float speed;
 
-    float StaminaResetTimer = 2f;
+    public float staminaResetTimer = 2f;
+
+    private float timeForStaminaReset = 1f; //en sekund
+
+    [Header("Collision Detection")]
+    public LayerMask layerMask;
+    public float playerHeight;
 
     enum MovementState
     {
@@ -47,7 +55,6 @@ public class MovementController : MonoBehaviour
         stamina = 5f * staminaMultiplier;
     }
 
-    // Update is called once per frame
     void Update()
     {
         float sidewaysX = Input.GetAxisRaw("Horizontal");
@@ -56,11 +63,12 @@ public class MovementController : MonoBehaviour
         camAnimator.SetBool("isCrouching", false);
         movementState = MovementState.idle;
 
-        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.LeftControl) && stamina > 0)
         {
             stamina -= Time.deltaTime;
             speed = runSpeed;
             movementState = MovementState.running;
+            staminaResetTimer = timeForStaminaReset;
         }
         else if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -73,14 +81,14 @@ public class MovementController : MonoBehaviour
         {
             speed = walkSpeed;
             movementState = MovementState.walking;
-            if (stamina < 5 * staminaMultiplier)
+            staminaResetTimer -= timeForStaminaReset * Time.deltaTime;
+            if (stamina < 5 * staminaMultiplier && staminaResetTimer < 0)
                 stamina += 0.01f;
 
-            if (stamina > 5 * staminaMultiplier)
-                stamina = 5 * staminaMultiplier;
+            Mathf.Clamp(stamina, 0, 5 * staminaMultiplier);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
@@ -93,9 +101,18 @@ public class MovementController : MonoBehaviour
         transform.Translate(movement);
     }
 
+    bool IsGrounded()
+    {
+        if (Physics.Raycast(transform.position, transform.up * -1, playerHeight, layerMask))
+        {
+            return true;
+        }
+        return false;
+    }
+
     bool ShouldRecharge()
     {
-        if (StaminaResetTimer == 0)
+        if (staminaResetTimer == 0 && movementState != MovementState.running)
             return true;
 
         return false;

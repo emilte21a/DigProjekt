@@ -24,6 +24,7 @@ public class GUIcontroller : MonoBehaviour
     {
         hours = Mathf.FloorToInt(lightingManager.TimeOfDay);
         minutes = Mathf.FloorToInt((lightingManager.TimeOfDay - hours) * 60f);
-        timeDisplayer.text = string.Format("{00:00}:{1:00}", hours, minutes);
+        timeDisplayer.text = $"Day:{lightingManager.day} :" + string.Format("{00:00}:{1:00}", hours, minutes);
     }
+
 }

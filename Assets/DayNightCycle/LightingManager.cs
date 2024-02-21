@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class LightingManager : MonoBehaviour
     [SerializeField, Range(1, 60)]
     private int timeOffset;
 
+    [SerializeField]
+    public float day = 0;
+
     private void Update()
     {
         if (preset == null)
@@ -34,6 +38,15 @@ public class LightingManager : MonoBehaviour
         {
             UpdateLighting(TimeOfDay / 24f);
         }
+        if (TimeOfDay > 24-Time.deltaTime)
+        {
+            day++;
+        }
+    }
+
+    private void Awake()
+    {
+        day = 0;
     }
 
     private void UpdateLighting(float timePercent)
