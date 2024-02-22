@@ -1,33 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<ItemInstance> items = new List<ItemInstance>();
+    public List<Item> items = new List<Item>();
 
-    [SerializeField] int itemCapacity = 20;
-    void AddItem(ItemInstance item)
+    public void Add(Item item)
     {
         items.Add(item);
+        
+        
     }
 
-    private void Update()
+    public void Remove(Item item)
     {
-        if (items.Count <= itemCapacity)
-            return;
-
-        else
-            print("Inventory is full");
-    }
-}
-
-public class ItemInstance
-{
-    public ItemData itemType;
-
-    public ItemInstance(ItemData itemData)
-    {
-        itemType = itemData;
+        items.Remove(item);
     }
 }

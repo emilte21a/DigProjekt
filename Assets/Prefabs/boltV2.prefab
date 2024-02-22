@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7120620696594431606}
   - component: {fileID: -490308782765709297}
   - component: {fileID: -1407302783793631110}
+  - component: {fileID: 3528500456608865699}
   m_Layer: 0
   m_Name: boltV2
   m_TagString: Scrap
@@ -134,3 +135,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3528500456608865699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279460400294181660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54fec0ed53bcca4fbe3d590f62ba569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 7bd1e0328ca0cca43aafb765171fe2be, type: 2}
