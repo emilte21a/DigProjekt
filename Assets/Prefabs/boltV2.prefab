@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -490308782765709297}
   - component: {fileID: -1407302783793631110}
   - component: {fileID: 3528500456608865699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: boltV2
   m_TagString: Scrap
   m_Icon: {fileID: 0}
@@ -148,3 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 7bd1e0328ca0cca43aafb765171fe2be, type: 2}
+  stack: 0

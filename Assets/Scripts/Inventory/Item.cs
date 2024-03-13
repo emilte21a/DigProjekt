@@ -7,12 +7,5 @@ public class Item : ScriptableObject
 {
     public string name;
     public Sprite icon;
-    public int stack;
-
-    public virtual void Use()
-    {
-        Debug.Log(name + " was used");
-    }
-
 
 }

@@ -20,8 +20,10 @@ public class TargetController : MonoBehaviour
             Physics.Raycast(mouseRay, out RaycastHit hit, layerMask);
 
             Vector3 can = new Vector3(hit.point.x, hit.point.y + 0.5f, hit.point.z);
-
-            transform.position = can;
+            if (hit.transform.gameObject.tag != "Player")
+            {
+                transform.position = can;
+            }
 
         }
     }

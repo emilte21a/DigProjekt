@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Scew_Nut
   m_EditorClassIdentifier: 
   name: Screw Nut
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0f051cf3fb509f34c98d72b091b9738b, type: 3}
+  stack: 0
   prefab: {fileID: 7279460400294181660, guid: 5ce4dd0fec2162744b6ae8b4d4494252, type: 3}
   sellValue: 0

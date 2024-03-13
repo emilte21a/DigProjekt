@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 536755119988452234}
   - component: {fileID: 5467180650455204288}
   - component: {fileID: 2751318117820947311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: metal_sheet
   m_TagString: Scrap
   m_Icon: {fileID: 0}
@@ -148,3 +148,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 3e3cb269c3dd76447affa4ef85bb67c8, type: 2}
+  stack: 0

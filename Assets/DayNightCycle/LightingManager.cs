@@ -4,7 +4,6 @@ using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 
-[ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
     [SerializeField]
@@ -22,6 +21,11 @@ public class LightingManager : MonoBehaviour
     [SerializeField]
     public float day = 0;
 
+    private void Start()
+    {
+        TimeOfDay = 8;
+    }
+
     private void Update()
     {
         if (preset == null)
@@ -38,7 +42,7 @@ public class LightingManager : MonoBehaviour
         {
             UpdateLighting(TimeOfDay / 24f);
         }
-        if (TimeOfDay > 24-Time.deltaTime)
+        if (TimeOfDay > 24 - Time.deltaTime)
         {
             day++;
         }
