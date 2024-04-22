@@ -4,6 +4,7 @@ using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 
+[ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
     [SerializeField]
@@ -20,12 +21,7 @@ public class LightingManager : MonoBehaviour
 
     [SerializeField]
     public float day = 0;
-
-    private void Start()
-    {
-        TimeOfDay = 8;
-    }
-
+    
     private void Update()
     {
         if (preset == null)
@@ -57,7 +53,7 @@ public class LightingManager : MonoBehaviour
     {
         RenderSettings.ambientLight = preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = preset.FogColor.Evaluate(timePercent);
-        RenderSettings.fogDensity = preset.AmbientColor.Evaluate(timePercent).b / 50;
+        RenderSettings.fogDensity = preset.AmbientColor.Evaluate(timePercent).b / 60;
 
         if (DirectionalLight != null)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerDoorInteract : MonoBehaviour
 {
-    [SerializeField] private float pickupRange;
+    [SerializeField] private float interactionRange;
 
     [SerializeField] LayerMask layerMask;
 
@@ -27,7 +27,7 @@ public class PlayerDoorInteract : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-        if (Physics.Raycast(ray, out hit, pickupRange, layerMask))
+        if (Physics.Raycast(ray, out hit, interactionRange, layerMask))
         {
             text.text = "Press F to open door";
             if (Input.GetKeyDown(KeyCode.F) && currentPlace == CurrentPlace.overworld)

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Scrap
+  - ScrapStation
+  - Computer
   layers:
   - Default
   - TransparentFX
@@ -16,11 +18,11 @@ TagManager:
   - whatIsGround
   - Item
   - Door
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Computer
+  - Ship
+  - OxygenStation
+  - PostFX
+  - SleepMachine
   - 
   - 
   - 

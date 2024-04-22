@@ -30,10 +30,15 @@ public class PlayerPickup : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Item item = hit.transform.GetComponent<ItemObject>().item;
-                
-                inventory.Add(item);
-                Destroy(hit.transform.gameObject);
+                if (inventory.inventoryInstance.items.Count <= 4)
+                {
+                    inventory.Add(item);
+                    Destroy(hit.transform.gameObject);
+                }
             }
+            if (inventory.inventoryInstance.items.Count == 4)
+                text.text = "Inventory if full";
+
         }
         else
             text.text = "";
