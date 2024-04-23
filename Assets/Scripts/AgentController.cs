@@ -8,6 +8,11 @@ public class AgentController : MonoBehaviour
 {
     NavMeshAgent agent;
 
+    public Material screenMat;
+    public Light screenLight;
+
+    [SerializeField] Color[] patrolColors;
+
     [SerializeField]
     GameObject target;
 
@@ -21,6 +26,8 @@ public class AgentController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        patrolColors = new Color[2];
+        screenLight = transform.GetChild(9).GetComponent<Light>();
         agent = GetComponent<NavMeshAgent>();
 
         timer = patrolTimer;
@@ -30,13 +37,19 @@ public class AgentController : MonoBehaviour
     void Update()
     {
         if (Vector3.Distance(transform.position, target.transform.position) <= distance)
-        {   
+        {
             agent.destination = target.transform.position;
+            screenLight.color = patrolColors[1];
+            screenMat.color = patrolColors[1] * 3;
+            screenMat.color = patrolColors[1];
         }
         else
         {
             AgentPatrol();
+            screenLight.color = patrolColors[0];
+            screenMat.color = patrolColors[0] * 3;
         }
+
     }
 
     void AgentPatrol()
