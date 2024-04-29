@@ -23,11 +23,16 @@ public class ComputerInteractor : MonoBehaviour
 
     [SerializeField] ComputerStatus computerStatus;
 
+    private Rigidbody rb;
+
+    private float timer = 2;
+
     private void Start()
     {
         cam = Camera.main;
         computerStatus = ComputerStatus.notOnComputer;
         ComputerScreen.SetActive(false);
+        rb = GetComponent<Rigidbody>();
     }
     void Update()
     {
@@ -48,24 +53,29 @@ public class ComputerInteractor : MonoBehaviour
         if (computerStatus == ComputerStatus.onComputer)
         {
             ComputerScreen.SetActive(true);
+            ComputerScreen.GetComponent<Animator>().Play("Computer Open");
             cam.transform.position = computerPosition.position;
             HUD.SetActive(false);
             cam.GetComponent<CameraController>().enabled = false;
-            if (Input.GetKeyDown(KeyCode.F))
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
-
-                computerStatus = ComputerStatus.notOnComputer;
-
+                ComputerScreen.GetComponent<Animator>().Play("Computer Close");
+                StartCoroutine(OnComputerClose());
             }
         }
-        else
-        {
-            ComputerScreen.SetActive(false);
-            cam.transform.position = defaultPosition.position;
-            HUD.SetActive(true);
-            cam.GetComponent<CameraController>().enabled = true;
-        }
 
+
+    }
+
+    IEnumerator OnComputerClose()
+    {
+        yield return new WaitForSeconds(2);
+        ComputerScreen.SetActive(false);
+        computerStatus = ComputerStatus.notOnComputer;
+        cam.transform.position = defaultPosition.position;
+        HUD.SetActive(true);
+        cam.GetComponent<CameraController>().enabled = true;
     }
 
     enum ComputerStatus

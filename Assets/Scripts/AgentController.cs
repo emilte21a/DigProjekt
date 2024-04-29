@@ -27,9 +27,10 @@ public class AgentController : MonoBehaviour
     void Awake()
     {
         patrolColors = new Color[2];
+        patrolColors[0] = Color.green;
+        patrolColors[1] = Color.red;
         screenLight = transform.GetChild(9).GetComponent<Light>();
         agent = GetComponent<NavMeshAgent>();
-
         timer = patrolTimer;
     }
 
@@ -40,8 +41,7 @@ public class AgentController : MonoBehaviour
         {
             agent.destination = target.transform.position;
             screenLight.color = patrolColors[1];
-            screenMat.color = patrolColors[1] * 3;
-            screenMat.color = patrolColors[1];
+            screenMat.SetColor("_Color", patrolColors[1]);
         }
         else
         {

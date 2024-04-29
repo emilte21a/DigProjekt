@@ -21,7 +21,12 @@ public class LightingManager : MonoBehaviour
 
     [SerializeField]
     public float day = 0;
-    
+
+    private void Start()
+    {
+        TimeOfDay = 4.2f;
+    }
+
     private void Update()
     {
         if (preset == null)
