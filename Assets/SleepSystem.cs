@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SleepSystem : MonoBehaviour
 {
@@ -21,14 +22,33 @@ public class SleepSystem : MonoBehaviour
 
     bool isSleeping = false;
 
+    public float sleepDebt;
+
+    [SerializeField] TMP_Text YOUNEEDSLEEP;
+
     private void Update()
     {
-        if (lightingManager.TimeOfDay >= 21 && lightingManager.TimeOfDay <= 3)
+        if (sleepDebt >= 100)
+        {
+            SceneManager.LoadScene("Death");
+        }
+
+        if (sleepDebt > 0)
+        {
+            YOUNEEDSLEEP.enabled = true;
+        }
+        if (lightingManager.TimeOfDay >= 0 && lightingManager.TimeOfDay <= 3)
         {
             sleepNeeded = true;
+            sleepDebt += Time.deltaTime;
+            YOUNEEDSLEEP.text = $"YOU NEED SLEEP, YOU ARE DEAD IN {100 - sleepDebt} SECONDS";
         }
         else
+        {
             sleepNeeded = false;
+            sleepDebt = 0;
+            YOUNEEDSLEEP.enabled = false;
+        }
 
         RaycastHit hit;
         Ray ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
@@ -46,7 +66,7 @@ public class SleepSystem : MonoBehaviour
                 text.text = "You don't need sleep";
 
         }
-        else if(!isSleeping)
+        else if (!isSleeping)
             text.text = "";
     }
 

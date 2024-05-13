@@ -4,7 +4,6 @@ using System.Threading;
 using Unity.Mathematics;
 using UnityEngine;
 
-[ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
     [SerializeField]
@@ -24,7 +23,7 @@ public class LightingManager : MonoBehaviour
 
     private void Start()
     {
-        TimeOfDay = 4.2f;
+        TimeOfDay = 6f;
     }
 
     private void Update()

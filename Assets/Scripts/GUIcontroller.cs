@@ -11,9 +11,13 @@ public class GUIcontroller : MonoBehaviour
     public MovementController movementController;
     public OxygenController oxygenController;
     public PlayerScrapInteract playerScrapInteract;
+    public HPController hPController;
 
     [Header("Stamina Display")]
     public Image staminaDisplay;
+
+    [Header("HP Display")]
+    public Image HPDisplay;
 
     [Header("Oxygen Display")]
     public Image oxygenDisplay;
@@ -22,6 +26,8 @@ public class GUIcontroller : MonoBehaviour
     [Header("Computer Display")]
     [SerializeField] TMP_Text computerScreenText;
     [SerializeField] Image computerDisplay;
+
+
 
 
     int hours;
@@ -50,8 +56,12 @@ public class GUIcontroller : MonoBehaviour
 
         staminaDisplay.rectTransform.sizeDelta = new Vector2(43.5f, staminaHeight);
 
+        float hpHeight = hPController.HP;
+
+        HPDisplay.rectTransform.sizeDelta = new Vector2(43.5f, hpHeight);
 
     }
+
     private void UpdateOxygenBar()
     {
         float oxygenHeight = oxygenController.oxygenLevel * 2;
@@ -73,7 +83,6 @@ public class GUIcontroller : MonoBehaviour
 
         computerScreenText.text = $"{playerScrapInteract.scrapCount}/36";
         computerDisplay.rectTransform.offsetMax = new Vector2(oxygenDisplay.rectTransform.offsetMax.x, scrapCountWidth);
-        print(playerScrapInteract.scrapCount);
     }
 
 }
